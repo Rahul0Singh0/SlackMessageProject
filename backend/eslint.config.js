@@ -1,8 +1,21 @@
 import globals from 'globals'
 import pluginJs from '@eslint/js'
+import { plugin } from 'mongoose'
+import simpleImportSort, { rules } from 'eslint-plugin-simple-import-sort'
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { languageOptions: { globals: globals.browser } },
+  { 
+    languageOptions: { 
+      globals: globals.node 
+    },
+    plugins: {
+      "simple-import-sort": simpleImportSort
+    },
+    rules: {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
+    },
+  },
   pluginJs.configs.recommended
 ]
