@@ -1,6 +1,5 @@
 import { StatusCodes } from "http-status-codes";
 import Workspace from "../schema/workspace.js";
-import User from "../schema/user.js";
 import ClientError from "../utils/errors/clientError.js";
 import crudRepository from "./crudRepository.js";
 import User from "../schema/user.js";
@@ -82,7 +81,7 @@ const workspaceRepository = {
 
     addChannelToWorkspace: async function (workspaceId, channelName) {
         const workspace =  await Workspace.findById(workspaceId).populate('channels');
-
+        console.log("HELLO")
         if(!workspace) {
             throw new ClientError({
                 explanation: 'Invalid data sent from the client',
@@ -90,7 +89,7 @@ const workspaceRepository = {
                 statusCode: StatusCodes.NOT_FOUND
             });
         }
-
+        console.log("HELLO2")
         const isChannelAlreadyPartOfWorkspace = workspace.channels.find(
             (channel) => channel.name === channelName
         );
